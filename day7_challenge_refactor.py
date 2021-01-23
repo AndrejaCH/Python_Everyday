@@ -1,8 +1,14 @@
-#########################################################
+#######################################################
 # HANGMAN GAME
-##########################################################
-# NOTES
-# 
+#######################################################
+# NOTES:
+# While loop structure
+# # set condition to start the loop
+# # set condition to end the loop 
+# enumerate and range function, index
+# initializing the variables
+# indentations!
+
 
 import random
 from hangman_words import word_list
