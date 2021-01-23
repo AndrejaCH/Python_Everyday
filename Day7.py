@@ -43,3 +43,32 @@ for index, letter in enumerate(chosen_word):
 #TODO-3: - Print 'display' and you should see the guessed letter in the correct position and every other letter replace with "_".
 #Hint - Don't worry about getting the user to guess the next letter. We'll tackle that in step 3.
 print(display)
+
+
+#########################################################
+# WHILE LOOP
+#########################################################
+# While loop has to have condition to run until it is true or false
+# In order to avoid infinitive loop has to have a switch off/ change of 
+# condition at some point.
+
+# Example of the while loop in step 3 for the game hangman:
+# New variable
+end_of_game = False
+# While loop - we want to repeat this over and over again:
+while end_of_game == False: 
+
+		guess = input("Guess a letter: ").lower()
+		#Check guessed letter
+		for position in range(word_length):
+			letter = chosen_word[position]
+			#print(f"Current position: {position}\n Current letter: {letter}\n Guessed letter: {guess}")
+			if letter == guess:
+					display[position] = letter
+
+		print(display)
+
+		if "_" not in display:
+			end_of_game = True
+			print("You_win.")
+			
