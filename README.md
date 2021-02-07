@@ -2,7 +2,9 @@
 Daily Python practice
 
 100 Days of code:
+
 Days 1-15: Beginner Code
+
 Days 15+ : intermediate & Advanced
 
 Diary:
