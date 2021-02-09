@@ -11,4 +11,6 @@ def checkPalindrome(inputString):
         return True
     else:
         return False
+
+
     
