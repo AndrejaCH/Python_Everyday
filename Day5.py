@@ -5,7 +5,7 @@
 ## Calculate the average without sum() and len() function
 
 # 🚨 Don't change the code below 👇
-student_heights = input("Input a list of student heights ").split()
+student_heights = input(Input a list of student heights ).split()
 for n in range(0, len(student_heights)):
   student_heights[n] = int(student_heights[n])
 # 🚨 Don't change the code above 👆
@@ -19,7 +19,7 @@ for height in student_heights:
 	number_of_items	+= 1
 
 result = (height_count/number_of_items)
-print(f"The average heigh of students is: {result:.0f}cm")
+print(fThe average heigh of students is: {result:.0f}cm)
 
 #print(round(height_count/number_of_items))
 #print(height_count/number_of_items)
@@ -28,7 +28,7 @@ print(f"The average heigh of students is: {result:.0f}cm")
 ## Calculate max and min with the for loop
 ######################################################################
 # 🚨 Don't change the code below 👇
-student_scores = input("Input a list of student scores ").split()
+student_scores = input(Input a list of student scores ).split()
 for n in range(0, len(student_scores)):
   student_scores[n] = int(student_scores[n])
 print(student_scores)
@@ -47,8 +47,8 @@ for score in student_scores:
 
 #print(highest_score)
 
-print(f"The highest score in the class is: {highest_score}")
-# for min just channge the ">" to "<"!
+print(fThe highest score in the class is: {highest_score})
+# for min just channge the > to <!
 
 #############################################################
 ## count all even numbers from 1 to 100
@@ -79,10 +79,10 @@ print(total)
 for number in range(1, 101):
 	if number % 15 == 0:
     #if number % 3 == 0 and number % 5 == 0:
-		print("FizzBuzz")		
+		print(FizzBuzz)		
 	elif number % 5 == 0:
-		print("Buzz")
+		print(Buzz)
 	elif number % 3 == 0:
-		print("Fizz")
+		print(Fizz)
 	else:
 		print(number)
