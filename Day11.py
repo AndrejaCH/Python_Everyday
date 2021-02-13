@@ -1,4 +1,3 @@
-
 import random
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
@@ -23,8 +22,8 @@ def calculate_score(user_cards):
 	if user_cards == [10, 11] or user_cards == [11, 10]:
 		return 0
 	elif 11 in user_cards and sum(user_cards) > 21:
-		user_cards.remove(11)
-    else:
-
-
-
+		user_cards.remove(11) and user_cards.append(1)  
+  else:
+		return sum(user_cards)
+    
+print(calculate_score(user_cards))
