@@ -36,6 +36,15 @@
 import random
 from replit import clear
 from art import logo
+import sys
+
+start_game = input("Do you want to play a game of Blackjack? 'y' or 'n'? ")
+if start_game == 'y':
+	clear()
+	pass
+else:
+	sys.exit()
+
 
 def blackjack():
 	print(logo)
@@ -108,12 +117,13 @@ def blackjack():
 	computer_score = score[1]
 
 	#print(score)
-
+	print(f"\tYour cards: {user_cards}, current score: {user_score}")
+	print(f"\tComputer's first card: {computer_cards[0]}")
 	# print players cards
-	print(f"Your cards: {user_cards}, current score: {user_score}")
+	#print(f"Your cards: {user_cards}, current score: {user_score}")
 	#sum_computer_cards = sum(computer_cards)
 	# print computer's first card.
-	print(f"Computer's first card: {computer_cards[0]}  c_cards:{computer_cards} c_score:{computer_score}")
+	#print(f"Computer's first card: {computer_cards[0]}")
 
 	#Hint 7: Inside calculate_score() check for a blackjack (a hand with only 2 cards: ace + 10) and return 0 instead of the actual score. 0 will represent a blackjack in our game.
 
@@ -121,12 +131,14 @@ def blackjack():
 
 	#Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
 		# set the flag for the while loop
+
+	
 	game_on = True
 	while game_on:
 
 		again = input("Type 'y' for another card, type 'n' to pass: ")
 
-		if user_score == 0 or computer_score == 0 or user_score > 21:
+		if user_score == 0 or computer_score == 0:
 			game_on = False
 		else:
 			if again == 'y':
@@ -137,17 +149,23 @@ def blackjack():
 					user_cards.append(user_cards_choice)
 					user_score = sum(user_cards)
 					calculate_score(user_cards, computer_cards)
-					print(f"Your cards: {user_cards}, current score: {user_score}")
-					print(f"Computer's first card: {computer_cards[0]}  c_cards:{computer_cards} c_score:{computer_score}")
-			elif again == 'n':
-				while computer_score < 17:
-					for i in range(1):
-						computer_cards_choice = deal_card()
-						computer_cards.append(computer_cards_choice)
-						computer_score = sum(computer_cards)
+					print(f"\tYour cards: {user_cards}, current score: {user_score}")
+					print(f"\tComputer's first card: {computer_cards[0]}")
+					if user_score > 21:
 						game_on = False
-				print(f"Your cards: {user_cards}, current score: {user_score}")
-				print(f"Computer's first card: {computer_cards[0]}  c_cards:{computer_cards} c_score:{computer_score}")
+
+			elif again == 'n':
+				if computer_score < 17:
+					while computer_score < 17:
+						for i in range(1):
+							computer_cards_choice = deal_card()
+							computer_cards.append(computer_cards_choice)
+							computer_score = sum(computer_cards)
+							game_on = False
+				else:
+					game_on = False
+					#print(f"\tYour cards: {user_cards}, current score: {user_score}")
+					#print(f"\tComputer's first card: {computer_cards[0]}")
 
 	#Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
 
@@ -160,23 +178,27 @@ def blackjack():
 	#Hint 13: Create a function called compare() and pass in the user_score and computer_score. If the computer and user both have the same score, then it's a draw. If the computer has a blackjack (0), then the user loses. If the user has a blackjack (0), then the user wins. If the user_score is over 21, then the user loses. If the computer_score is over 21, then the computer loses. If none of the above, then the player with the highest score wins.
 	def compare(user_score, computer_score):
 
-		if user_score == computer_score:
-			print("It's a draw")
-		elif computer_score == 0:
-			print("Computer blackjack! \t You lose!")
-		elif user_score == 0:
-			print("User's blackjack! \t You win!")
-		elif user_score > 21:
-			print("You lose!")
-		elif computer_score > 21:
-			print("You win!")
-		elif user_score < computer_score:
-			print("You lose!")
-		elif user_score > computer_score:
-			print("You win!")
+		print(f"\tYour final hand: {user_cards}, final score: {user_score}")
+		print(f"\tComputer's final hand: {computer_cards}  final score: {computer_score}")
 
-		print(f"Your final hand: {user_cards}, final score: {user_score}")
-		print(f"Computer's first hand: {computer_cards}  final score:{computer_score}")
+		if user_score == computer_score:
+			print("Draw 🙃")
+		elif computer_score == 0:
+			print("Computer blackjack! \t You lose! 😱")
+		elif user_score == 0:
+			print("Win with a blackjack! 😎")
+		elif user_score > 21:
+			print("You went over! You lose! 😭")
+		elif computer_score > 21:
+			print("Opponent went over. You win 😁")
+		elif user_score < computer_score:
+			print("You lose! 😤")
+		elif user_score > computer_score:
+			print("You win! 😀")
+
+		#print(f"\tYour final hand: {user_cards}, final score: {user_score}")
+		#print(f"\tComputer's final hand: {computer_cards}  final score:{computer_score}")
+
 	#Call the function
 	compare(user_score, computer_score)
 
