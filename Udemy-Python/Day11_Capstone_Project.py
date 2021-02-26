@@ -34,8 +34,8 @@
 #Hint 4: Create a deal_card() function that uses the List below to *return* a random card.
 #11 is the Ace.
 import random
-#from replit import clear
-from asciiart import blackjack_logo
+from replit import clear
+from art import logo
 
 def blackjack():
 	print(logo)
@@ -115,40 +115,40 @@ def blackjack():
 	# print computer's first card.
 	print(f"Computer's first card: {computer_cards[0]}  c_cards:{computer_cards} c_score:{computer_score}")
 
+	if computer_score == 0:
+		print("Lose, opponent has Blackjack")
+		blackjack()
+	elif user_score == 0:
+		print("You win blackjak!")
+		blackjack()
+
 	#Hint 7: Inside calculate_score() check for a blackjack (a hand with only 2 cards: ace + 10) and return 0 instead of the actual score. 0 will represent a blackjack in our game.
 
 	#Hint 8: Inside calculate_score() check for an 11 (ace). If the score is already over 21, remove the 11 and replace it with a 1. You might need to look up append() and remove().
 
 	#Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
-		# set the flag for the while loop
-	game_on = True
-	while game_on:
-
-		again = input("Type 'y' for another card, type 'n' to hold: ")
-
-		if user_score == 0 or computer_score == 0 or user_score > 21:
-			print("game over")
-			game_on = False
-		else:
-			if again == 'y':
-				for i in range(1):
-					# store the return value of the function in a new variable
-					user_cards_choice = deal_card()
-					# append this stored value in a new list
-					user_cards.append(user_cards_choice)
-					user_score = sum(user_cards)
-					calculate_score(user_cards, computer_cards)
-					print(f"Your cards: {user_cards}, current score: {user_score}")
-					print(f"Computer's first card: {computer_cards[0]}  c_cards:{computer_cards} c_score:{computer_score}")
-			elif again == 'n':
-				while computer_score < 17:
-					for i in range(1):
-						computer_cards_choice = deal_card()
-						computer_cards.append(computer_cards_choice)
-						computer_score = sum(computer_cards)
-						game_on = False
+	again = input("Type 'y' for another card, type 'n' to pass: ")
+	if again == 'y':
+		#recalculate the score! and return the appropriate result!
+		while user_score > 21:
+			for i in range(1):
+				# store the return value of the function in a new variable
+				user_cards_choice = deal_card()
+				# append this stored value in a new list
+				user_cards.append(user_cards_choice)
+				user_score = sum(user_cards)
+				calculate_score(user_cards, computer_cards)
 				print(f"Your cards: {user_cards}, current score: {user_score}")
 				print(f"Computer's first card: {computer_cards[0]}  c_cards:{computer_cards} c_score:{computer_score}")
+	elif again == 'n':
+		while computer_score < 17:
+			for i in range(1):
+				computer_cards_choice = deal_card()
+				computer_cards.append(computer_cards_choice)
+				computer_score = sum(computer_cards)
+				#game_on = False
+		print(f"Your cards: {user_cards}, current score: {user_score}")
+		print(f"Computer's first card: {computer_cards[0]}  c_cards:{computer_cards} c_score:{computer_score}")
 
 	#Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
 
@@ -164,9 +164,9 @@ def blackjack():
 		if user_score == computer_score:
 			print("It's a draw")
 		elif computer_score == 0:
-			print("Computer blackjack! \t You lose!")
+			print("Computer blackjack! You lose!")
 		elif user_score == 0:
-			print("User's blackjack! \t You win!")
+			print("User's blackjack! You win!")
 		elif user_score > 21:
 			print("You lose!")
 		elif computer_score > 21:
@@ -177,15 +177,17 @@ def blackjack():
 			print("You win!")
 
 		print(f"Your final hand: {user_cards}, final score: {user_score}")
-		print(f"Computer's first hand: {computer_cards}  final score:{computer_score}")
+		print(f"Computer's final hand: {computer_cards}  final score:{computer_score}")
 	#Call the function
 	compare(user_score, computer_score)
 
-	if input("Do you want to play again? 'y' or 'n'? ") == 'y':
-		#clear()
-		blackjack()
-	else:
-		game_on = False
+	game_on = True
+	while game_on:
+		if input("Do you want to play a game of Blackjack? 'y' or 'n'? ") == 'y':
+			clear()
+			blackjack()
+		else:
+			game_on = False
 
 blackjack()
 #Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
@@ -195,4 +197,3 @@ blackjack()
 # else: 
 # 	#exit while loop?
 # 	game_on = False
-
